@@ -53,7 +53,7 @@ namespace ZombieArmy.Character
             //选择目标敌人
             attackTarget = SelectTargetEnemy(withinAttackRangeEnemies, enemyCount);
             //面向目标敌人
-            motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
+            //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
             //目标敌人扣血
             attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
         }

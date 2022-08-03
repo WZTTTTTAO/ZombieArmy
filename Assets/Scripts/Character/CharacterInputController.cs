@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Common;
 
 namespace ZombieArmy.Character
 {
@@ -9,7 +11,6 @@ namespace ZombieArmy.Character
 	/// </summary>
 	public class CharacterInputController : MonoBehaviour
 	{
-        public CharacterMotor[] allCharacterMotors;
 
         private void Update()
         {
@@ -19,12 +20,19 @@ namespace ZombieArmy.Character
                 RaycastHit hit;
                 if(Physics.Raycast(mouseInputRay, out hit))
                 {
-                    foreach (var motor in allCharacterMotors)
+                    Vector3 moveToPosition = hit.point;
+
+                    foreach (var motor in FormationManager.Instance.currentSelectedUnits)
                     {
-                        motor.MoveToTargetPosition(hit.point);
+                        motor.MoveToTargetPosition(moveToPosition);
                     }
                 }
             }
+
+            //CharacterMotor minMotor = FormationManager.Instance.currentSelectedUnits.GetMin(d => Vector3.Distance(d.transform.position, d.navMeshAgent.destination));
+            //Debug.Log("min dist: " + Vector3.Distance(minMotor.transform.position, minMotor.navMeshAgent.destination));
         }
+
+       
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Common;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,24 +13,50 @@ namespace ZombieArmy.Character
 	public class CharacterMotor : MonoBehaviour
 	{
 		//角色移动的目标点位
-		[SerializeField] private Transform targetDestinationTrans;
+		//[SerializeField] private Transform targetDestinationTrans;
 
         [SerializeField] private float rotateSpeed;
 
-		private NavMeshAgent navMeshAgent;
+		public NavMeshAgent navMeshAgent;
         //上一次旋转协程
         private Coroutine lastRotationCoroutine;
+        //是否完成寻路
+        private bool pathCompleted = true;
 
         private void Start()
         {
 			navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        //private void Update()
-        //{
-        //    //暂时测试寻路功能
-        //    MoveToTargetPosition(targetDestinationTrans.position);
-        //}
+        private void OnEnable()
+        {
+            //注册单位到达目的地事件
+            EventManager.AddListener("UnitArriveDestination", OnUnitArriveDestination);
+        }
+
+        private void OnDisable()
+        {
+            //注销单位到达目的地事件
+            EventManager.RemoveListener("UnitArriveDestination", OnUnitArriveDestination);
+        }
+
+        private void OnUnitArriveDestination()
+        {
+            StopMove();
+        }
+
+        private void Update()
+        {
+            //只有开始移动后（寻路未完成） 才进行是否到达目的地检测
+            if (pathCompleted) return;
+
+            //到达目的地后 触发到达目的地事件
+            if (Vector3.Distance(transform.position, navMeshAgent.destination) < navMeshAgent.stoppingDistance)
+            {
+                EventManager.TriggerEvent("UnitArriveDestination");
+                pathCompleted = true;
+            }
+        }
 
         /// <summary>
         /// 角色寻路到目标点位置
@@ -36,55 +64,66 @@ namespace ZombieArmy.Character
         /// <param name="targetPosition">目标位置坐标</param>
         public void MoveToTargetPosition(Vector3 targetPosition)
         {
-            RotateTowardTarget(targetPosition);
+            //RotateTowardTarget(targetPosition);
 
             navMeshAgent.SetDestination(targetPosition);
+
+            pathCompleted = false;
         }
 
-        private Quaternion CalculateTargetRotation(Vector3 targetPos)
+        public void StopMove()
         {
-            //旋转方向向量
-            Vector3 lookDirection = targetPos - transform.position;
-            //目标旋转角度
-            return Quaternion.LookRotation(lookDirection);
+            navMeshAgent.ResetPath();
+            pathCompleted = true;
         }
+
+        #region 旋转
+        //private Quaternion CalculateTargetRotation(Vector3 targetPos)
+        //{
+        //    //旋转方向向量
+        //    Vector3 lookDirection = targetPos - transform.position;
+        //    //目标旋转角度
+        //    return Quaternion.LookRotation(lookDirection);
+        //}
 
         /// <summary>
         /// 旋转朝向目标点
         /// </summary>
         /// <param name="targetPos">面向的目标点</param>
-        public void RotateTowardTarget(Vector3 targetPos)
-        {
-            //如果目标点和当前位置重合则不需要选择
-            if ((targetPos - transform.position).sqrMagnitude < 0.1f) return;
-            //计算目标旋转
-            Quaternion targetRotation = CalculateTargetRotation(targetPos);
-            //逐渐旋转到目标旋转角度
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-        }
+        //public void RotateTowardTarget(Vector3 targetPos)
+        //{
+        //    //如果目标点和当前位置重合则不需要选择
+        //    if ((targetPos - transform.position).sqrMagnitude < 0.1f) return;
+        //    //计算目标旋转
+        //    Quaternion targetRotation = CalculateTargetRotation(targetPos);
+        //    //逐渐旋转到目标旋转角度
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        //}
 
-        public void GraduallyRotateTowardTarget(Vector3 targetPos)
-        {
-            //如果目标点和当前位置重合则不需要选择
-            if ((targetPos - transform.position).sqrMagnitude < 0.1f) return;
-            //计算目标旋转
-            Quaternion targetRotation = CalculateTargetRotation(targetPos);
-            //停止上一次旋转
-            StopCoroutine(lastRotationCoroutine);
-            //逐渐旋转至目标角度
-            lastRotationCoroutine = StartCoroutine(GraduallyRotateToTarget(targetRotation));
-        }
+        //public void GraduallyRotateTowardTarget(Vector3 targetPos)
+        //{
+        //    //如果目标点和当前位置重合则不需要选择
+        //    if ((targetPos - transform.position).sqrMagnitude < 0.1f) return;
+        //    //计算目标旋转
+        //    Quaternion targetRotation = CalculateTargetRotation(targetPos);
+        //    //停止上一次旋转
+        //    if (lastRotationCoroutine != null)
+        //        StopCoroutine(lastRotationCoroutine);   
+        //    //逐渐旋转至目标角度
+        //    lastRotationCoroutine = StartCoroutine(GraduallyRotateToTarget(targetRotation));
+        //}
 
 
-        private IEnumerator GraduallyRotateToTarget(Quaternion targetRotation)
-        {
-            while (Quaternion.Angle(transform.rotation, targetRotation) > 0.5f)
-            {
-                //逐渐旋转到目标旋转角度
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-                yield return null;
-            }
-            transform.rotation = targetRotation;
-        }
-	}
+        //private IEnumerator GraduallyRotateToTarget(Quaternion targetRotation)
+        //{
+        //    while (Quaternion.Angle(transform.rotation, targetRotation) > 0.5f)
+        //    {
+        //        //逐渐旋转到目标旋转角度
+        //        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        //        yield return null;
+        //    }
+        //    transform.rotation = targetRotation;
+        //}
+        #endregion
+    }
 }
