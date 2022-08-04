@@ -36,7 +36,7 @@ namespace ZombieArmy.Character
         /// </summary>
         public void RegisterArriveEvent()
         {
-            EventManager.AddListener("UnitArriveDestination", OnUnitArriveDestination);
+            EventManager.AddListener("UnitArriveDestination" + transform.parent.name, OnUnitArriveDestination);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace ZombieArmy.Character
         /// </summary>
         public void UnregisterArriveEvent()
         {
-            EventManager.RemoveListener("UnitArriveDestination", OnUnitArriveDestination);
+            EventManager.RemoveListener("UnitArriveDestination" + transform.parent.name, OnUnitArriveDestination);
         }
 
         //任意一个单位到达终点后 其他单位停止移动
@@ -70,7 +70,7 @@ namespace ZombieArmy.Character
             //到达目的地后 触发到达目的地事件
             if (Vector3.Distance(transform.position, navMeshAgent.destination) < navMeshAgent.stoppingDistance)
             {
-                EventManager.TriggerEvent("UnitArriveDestination");
+                EventManager.TriggerEvent("UnitArriveDestination" + transform.parent.name);
                 pathCompleted = true;
             }
         }

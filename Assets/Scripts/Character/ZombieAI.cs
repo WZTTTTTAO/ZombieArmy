@@ -26,6 +26,9 @@ namespace ZombieArmy.Character
         //攻击范围内的所有敌人目标 最多10个敌人
         public Collider[] withinAttackRangeEnemies = new Collider[10];
 
+        //停止攻击
+        public bool stopAttack { get; set; }
+
         private void Start()
         {
             characterStatusInfo = GetComponent<CharacterStatus>().characterStatusInfo;
@@ -40,8 +43,8 @@ namespace ZombieArmy.Character
 
             motor.SetNavAgentStopped(false);
 
-            //如果攻击范围内有敌人 则停止寻路并攻击敌人
-            if (overlapEnemyCount == 0) return;
+            //如果攻击范围内有敌人 则停止寻路并攻击敌人 (如果被强制停止攻击，则停止攻击)
+            if (overlapEnemyCount == 0 || stopAttack) return;
             motor.SetNavAgentStopped(true);
 
             //根据攻击时间间隔计算攻击
