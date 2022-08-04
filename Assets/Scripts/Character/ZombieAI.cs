@@ -37,11 +37,15 @@ namespace ZombieArmy.Character
             //检测攻击范围内的敌人
             int overlapEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, characterStatusInfo.AttackRange, withinAttackRangeEnemies, enemyLayer);
             //withinAttackRangeEnemies = Physics.OverlapSphere(transform.position, characterStatusInfo.AttackRange, enemyLayer);
-            //如果攻击范围内有敌人 则攻击敌人
+
+            motor.SetNavAgentStopped(false);
+
+            //如果攻击范围内有敌人 则停止寻路并攻击敌人
             if (overlapEnemyCount == 0) return;
+            motor.SetNavAgentStopped(true);
 
             //根据攻击时间间隔计算攻击
-            if(startAttackTime < Time.time)
+            if (startAttackTime < Time.time)
             {
                 AttackTargetEnemy(withinAttackRangeEnemies, overlapEnemyCount);
                 startAttackTime = Time.time + characterStatusInfo.AttackInterval;

@@ -88,6 +88,11 @@ namespace ZombieArmy.Character
             pathCompleted = false;
         }
 
+        public void SetNavAgentStopped(bool stop)
+        {
+            navMeshAgent.isStopped = stop;
+        }
+
         public void StopMove()
         {
             navMeshAgent.ResetPath();

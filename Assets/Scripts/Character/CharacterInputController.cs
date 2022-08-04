@@ -16,16 +16,10 @@ namespace ZombieArmy.Character
 
         private void Update()
         {
-            CameraInputControl();
-
             //CharacterMotor minMotor = FormationManager.Instance.currentSelectedUnits.GetMin(d => Vector3.Distance(d.transform.position, d.navMeshAgent.destination));
             //Debug.Log("min dist: " + Vector3.Distance(minMotor.transform.position, minMotor.navMeshAgent.destination));
         }
 
-        private void CameraInputControl()
-        {
-            
-        }
 
         public void MoveCurrentUnitsToMousePosition()
         {

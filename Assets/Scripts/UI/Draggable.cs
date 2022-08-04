@@ -29,6 +29,7 @@ namespace ZombieArmy.UI
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = 0.6f;
             beginDragPosition = rectTransform.anchoredPosition;
+            CameraController.Instance.isDraggingUI = true;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -42,6 +43,7 @@ namespace ZombieArmy.UI
             canvasGroup.alpha = 1f;
             rectTransform.anchoredPosition = beginDragPosition;
             CharacterInputController.Instance.MoveCurrentUnitsToMousePosition();
+            CameraController.Instance.isDraggingUI = false;
         }
     }
 }
