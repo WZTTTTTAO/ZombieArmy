@@ -17,29 +17,46 @@ namespace ZombieArmy.Character
 
         [SerializeField] private float rotateSpeed;
 
-		public NavMeshAgent navMeshAgent;
+		private NavMeshAgent navMeshAgent;
         //上一次旋转协程
-        private Coroutine lastRotationCoroutine;
+        //private Coroutine lastRotationCoroutine;
         //是否完成寻路
         private bool pathCompleted = true;
+        //被选中icon
+        private GameObject selectedIconGO;
 
         private void Start()
         {
 			navMeshAgent = GetComponent<NavMeshAgent>();
+            selectedIconGO = transform.Find("Selected").gameObject;
         }
 
-        private void OnEnable()
+        /// <summary>
+        /// 注册单位到达目的地事件
+        /// </summary>
+        public void RegisterArriveEvent()
         {
-            //注册单位到达目的地事件
             EventManager.AddListener("UnitArriveDestination", OnUnitArriveDestination);
         }
 
-        private void OnDisable()
+        /// <summary>
+        /// 开启关闭选中图标
+        /// </summary>
+        /// <param name="visible">是否显示图标</param>
+        public void SetSelectedIconVisibility(bool visible)
         {
-            //注销单位到达目的地事件
+            selectedIconGO.SetActive(visible);
+        }
+
+        /// <summary>
+        /// 注销单位到达目的地事件
+        /// </summary>
+        public void UnregisterArriveEvent()
+        {
             EventManager.RemoveListener("UnitArriveDestination", OnUnitArriveDestination);
         }
 
+        //任意一个单位到达终点后 其他单位停止移动
         private void OnUnitArriveDestination()
         {
             StopMove();
