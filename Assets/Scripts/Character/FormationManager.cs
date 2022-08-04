@@ -18,13 +18,18 @@ namespace ZombieArmy.Character
 
         private void Start()
         {
-            CharacterMotor[] motors = new CharacterMotor[initialUnitsGroup.childCount];
-            for (int i = 0; i < initialUnitsGroup.childCount; i++)
-            {
-                motors[i] = initialUnitsGroup.GetChild(i).GetComponent<CharacterMotor>();
-            }
-            currentSelectedUnits = motors;
+            currentSelectedUnits = GetUnitsByTransParent(initialUnitsGroup);
             RegisterArrivalEventForCurrentSelectedUnits();
+        }
+
+        private CharacterMotor[] GetUnitsByTransParent(Transform unitsGroup)
+        {
+            CharacterMotor[] motors = new CharacterMotor[unitsGroup.childCount];
+            for (int i = 0; i < unitsGroup.childCount; i++)
+            {
+                motors[i] = unitsGroup.GetChild(i).GetComponent<CharacterMotor>();
+            }
+            return motors;
         }
 
         private void OnDisable()
@@ -35,10 +40,10 @@ namespace ZombieArmy.Character
             }
         }
 
-        public void ChangeSelectedUnits(CharacterMotor[] newUnits)
+        public void ChangeSelectedUnits(Transform unitsGroup)
         {
             UnregisterArrivalEventForCurrentSelectedUnits();
-            currentSelectedUnits = newUnits;
+            currentSelectedUnits = GetUnitsByTransParent(unitsGroup);
             RegisterArrivalEventForCurrentSelectedUnits();
         }
 
@@ -65,6 +70,24 @@ namespace ZombieArmy.Character
                 unitMotor.UnregisterArriveEvent();
                 //隐藏选中图标
                 unitMotor.SetSelectedIconVisibility(false);
+            }
+        }
+
+        /// <summary>
+        /// 将当前部队移动到鼠标位置
+        /// </summary>
+        public void MoveCurrentUnitsToMousePosition()
+        {
+            Ray mouseInputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(mouseInputRay, out hit))
+            {
+                Vector3 moveToPosition = hit.point;
+
+                foreach (var motor in currentSelectedUnits)
+                {
+                    motor.MoveToTargetPosition(moveToPosition);
+                }
             }
         }
 

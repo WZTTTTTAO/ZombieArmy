@@ -17,6 +17,8 @@ namespace ZombieArmy.UI
 
         private Vector3 beginDragPosition;
 
+        [SerializeField] private Transform unitsGroup;
+
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
@@ -30,6 +32,7 @@ namespace ZombieArmy.UI
             canvasGroup.alpha = 0.6f;
             beginDragPosition = rectTransform.anchoredPosition;
             CameraController.Instance.isDraggingUI = true;
+            FormationManager.Instance.ChangeSelectedUnits(unitsGroup);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -42,7 +45,7 @@ namespace ZombieArmy.UI
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 1f;
             rectTransform.anchoredPosition = beginDragPosition;
-            CharacterInputController.Instance.MoveCurrentUnitsToMousePosition();
+            FormationManager.Instance.MoveCurrentUnitsToMousePosition();
             CameraController.Instance.isDraggingUI = false;
         }
     }
