@@ -19,6 +19,8 @@ namespace ZombieArmy.UI
 
         [SerializeField] private Transform unitsGroup;
 
+        private UnitsGroup currentSelectedUnitsGroup;
+
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
@@ -32,12 +34,16 @@ namespace ZombieArmy.UI
             canvasGroup.alpha = 0.6f;
             beginDragPosition = rectTransform.anchoredPosition;
             CameraController.Instance.isDraggingUI = true;
-            FormationManager.Instance.ChangeSelectedUnits(unitsGroup);
+            currentSelectedUnitsGroup = FormationManager.Instance.ChangeSelectedUnits(unitsGroup);
+            Bezier.Instance.SetStartPoint(currentSelectedUnitsGroup.centralPoint);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+
+            currentSelectedUnitsGroup.UpdateCentralPointAndMaxDistance();
+            Bezier.Instance.SetStartPoint(currentSelectedUnitsGroup.centralPoint);
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -47,6 +53,7 @@ namespace ZombieArmy.UI
             rectTransform.anchoredPosition = beginDragPosition;
             FormationManager.Instance.MoveCurrentUnitsToMousePosition();
             CameraController.Instance.isDraggingUI = false;
+            Bezier.Instance.StopDrawingCurve();
         }
     }
 }

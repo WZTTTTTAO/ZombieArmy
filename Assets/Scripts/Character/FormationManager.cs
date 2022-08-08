@@ -12,39 +12,39 @@ namespace ZombieArmy.Character
 	public class FormationManager : MonoSingleton<FormationManager>
 	{
         /// 当前选中的单位
-        public CharacterMotor[] currentSelectedUnits { get; private set; }
+        //public CharacterMotor[] currentSelectedUnits { get; private set; }
+
+        public UnitsGroup currentSelectedUnitsGroup { get; private set; }
+
+        private Vector3 centralPoint;
 		//初始控制单位
 		[SerializeField] private Transform initialUnitsGroup;
 
+        public bool unitsCanAttack { get; set; }
+
         private void Start()
         {
-            currentSelectedUnits = GetUnitsByTransParent(initialUnitsGroup);
+            currentSelectedUnitsGroup = new UnitsGroup(initialUnitsGroup);
+            //currentSelectedUnits = GetUnitsByTransParent(initialUnitsGroup);
             RegisterArrivalEventForCurrentSelectedUnits();
         }
 
-        private CharacterMotor[] GetUnitsByTransParent(Transform unitsGroup)
-        {
-            CharacterMotor[] motors = new CharacterMotor[unitsGroup.childCount];
-            for (int i = 0; i < unitsGroup.childCount; i++)
-            {
-                motors[i] = unitsGroup.GetChild(i).GetComponent<CharacterMotor>();
-            }
-            return motors;
-        }
+        //private void OnDisable()
+        //{
+        //    foreach (var unitMotor in currentSelectedUnits)
+        //    {
+        //        unitMotor.UnregisterArriveEvent();
+        //    }
+        //}
 
-        private void OnDisable()
-        {
-            foreach (var unitMotor in currentSelectedUnits)
-            {
-                unitMotor.UnregisterArriveEvent();
-            }
-        }
-
-        public void ChangeSelectedUnits(Transform unitsGroup)
+        public UnitsGroup ChangeSelectedUnits(Transform unitsGroupParent)
         {
             UnregisterArrivalEventForCurrentSelectedUnits();
-            currentSelectedUnits = GetUnitsByTransParent(unitsGroup);
+            currentSelectedUnitsGroup.UpdateUnitsGroup(unitsGroupParent);
+            //currentSelectedUnits = GetUnitsByTransParent(unitsGroup);
             RegisterArrivalEventForCurrentSelectedUnits();
+
+            return currentSelectedUnitsGroup;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace ZombieArmy.Character
         /// </summary>
         private void RegisterArrivalEventForCurrentSelectedUnits()
         {
-            foreach (var unitMotor in currentSelectedUnits)
+            foreach (var unitMotor in currentSelectedUnitsGroup.groupMotors)
             {
                 unitMotor.RegisterArriveEvent();
                 //显示选中图标
@@ -65,7 +65,7 @@ namespace ZombieArmy.Character
         /// </summary>
         private void UnregisterArrivalEventForCurrentSelectedUnits()
         {
-            foreach (var unitMotor in currentSelectedUnits)
+            foreach (var unitMotor in currentSelectedUnitsGroup.groupMotors)
             {
                 unitMotor.UnregisterArriveEvent();
                 //隐藏选中图标
@@ -84,12 +84,15 @@ namespace ZombieArmy.Character
             {
                 Vector3 moveToPosition = hit.point;
 
-                foreach (var motor in currentSelectedUnits)
+                foreach (var motor in currentSelectedUnitsGroup.groupMotors)
                 {
                     motor.MoveToTargetPosition(moveToPosition);
                 }
             }
         }
+
+        
+
 
     }
 }
