@@ -37,7 +37,9 @@ namespace Aura2API
             {
                 return UnityEngine.XR.XRSettings.enabled &&
 #if UNITY_EDITOR
+#pragma warning disable CS0618 // 类型或成员已过时
                 Application.isPlaying && PlayerSettings.virtualRealitySupported && PlayerSettings.stereoRenderingPath == StereoRenderingPath.SinglePass;
+#pragma warning restore CS0618 // 类型或成员已过时
 #else
                 UnityEngine.XR.XRSettings.eyeTextureDesc.vrUsage == VRTextureUsage.TwoEyes;
 #endif
