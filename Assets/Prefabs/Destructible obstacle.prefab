@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8107150912490547375}
   - component: {fileID: 6461736810648196201}
   - component: {fileID: 2015511082598659244}
+  - component: {fileID: 725887767737002943}
   m_Layer: 9
   m_Name: Destructible obstacle
   m_TagString: Untagged
@@ -109,3 +110,19 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: bfd86ee1917f24c328aed8798e5febe8,
     type: 2}
   currentHealth: 50
+--- !u!208 &725887767737002943
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425051522612368261}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
