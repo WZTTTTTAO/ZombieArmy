@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4037065689700016817}
   - component: {fileID: 4037065689700016816}
   - component: {fileID: 4037065689700016719}
+  - component: {fileID: 4390274259172217993}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Zombie
@@ -212,6 +213,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &4390274259172217993
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037065689700016714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.9915533
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.99577665, z: 0}
 --- !u!1 &4037065690735808993
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +238,6 @@ GameObject:
   - component: {fileID: 4037065690735808994}
   - component: {fileID: 4037065690735808997}
   - component: {fileID: 4037065690735808996}
-  - component: {fileID: 4037065690735808995}
   m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
@@ -292,20 +306,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &4037065690735808995
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4037065690735808993}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4037065691664085851
 GameObject:
   m_ObjectHideFlags: 0
