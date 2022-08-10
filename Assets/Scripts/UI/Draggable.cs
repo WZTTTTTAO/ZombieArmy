@@ -30,7 +30,7 @@ namespace ZombieArmy.UI
             //将对应队伍的所有成员 对应的Ui设置为自己
             for (int i = 0; i < unitsGroup.childCount; i++)
             {
-                unitsGroup.GetChild(i).GetComponent<CharacterStatus>().unitGroupUI = this;
+                unitsGroup.GetChild(i).GetComponent<ZombieStatus>().unitGroupUI = this;
             }
         }
 
