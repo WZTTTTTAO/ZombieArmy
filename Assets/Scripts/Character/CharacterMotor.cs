@@ -25,6 +25,7 @@ namespace ZombieArmy.Character
         //被选中icon
         private GameObject selectedIconGO;
 
+
         private void Start()
         {
 			navMeshAgent = GetComponent<NavMeshAgent>();

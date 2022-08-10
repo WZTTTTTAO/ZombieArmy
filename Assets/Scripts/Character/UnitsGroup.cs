@@ -27,6 +27,7 @@ namespace ZombieArmy.Character
         {
             this.groupParent = groupParent;
             this.groupMotors = GetUnitsByTransParent(groupParent);
+            if (groupMotors == null) return;
             UpdateCentralPointAndMaxDistance();
         }
 
@@ -53,6 +54,9 @@ namespace ZombieArmy.Character
         /// <returns></returns>
         private CharacterMotor[] GetUnitsByTransParent(Transform unitsGroupParent)
         {
+            //如果父物体下小队成员全部被销毁 则返回空的数组
+            if (unitsGroupParent.childCount == 0) return null;
+
             CharacterMotor[] motors = new CharacterMotor[unitsGroupParent.childCount];
             for (int i = 0; i < unitsGroupParent.childCount; i++)
             {

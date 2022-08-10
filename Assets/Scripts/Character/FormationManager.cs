@@ -65,6 +65,9 @@ namespace ZombieArmy.Character
         /// </summary>
         private void UnregisterArrivalEventForCurrentSelectedUnits()
         {
+            //如果当前选中目标队伍全部被销毁 则不需要注销事件
+            if (currentSelectedUnitsGroup.groupMotors == null) return;
+
             foreach (var unitMotor in currentSelectedUnitsGroup.groupMotors)
             {
                 unitMotor.UnregisterArriveEvent();
