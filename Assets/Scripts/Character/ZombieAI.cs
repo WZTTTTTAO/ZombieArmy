@@ -97,14 +97,6 @@ namespace ZombieArmy.Character
             return withinAttackRangeEnemies[enemyCount - 1].transform;
         }
 
-        //显示攻击范围
-        private void OnDrawGizmos()
-        {
-            if(characterStatusInfo!= null)
-            {
-                Gizmos.DrawWireSphere(transform.position, characterStatusInfo.AttackRange);
-            }
-        }
 
     }
 }

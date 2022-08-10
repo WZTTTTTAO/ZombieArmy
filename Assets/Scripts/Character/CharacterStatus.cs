@@ -15,9 +15,19 @@ namespace ZombieArmy.Character
 		//血量
 		public float currentHealth;
 
+        public bool isDeath = false;
+
         private void Awake()
         {
             currentHealth = characterStatusInfo.Health;
+        }
+
+        private void Update()
+        {
+            if (isDeath)
+            {
+                TakeDamage(1000);
+            }
         }
 
         /// <summary>
@@ -28,12 +38,25 @@ namespace ZombieArmy.Character
         {
 			currentHealth -= amount;
 			if (currentHealth <= 0)
-				Death();
+            {
+                Transform groupParent = transform.parent;
+                transform.parent = null;
+                FormationManager.Instance.currentSelectedUnitsGroup.UpdateUnitsGroup(groupParent);
+                Death();
+            }
         }
 
         private void Death()
         {
 			Destroy(gameObject);
+        }
+
+
+        //显示攻击范围
+        private void OnDrawGizmos()
+        {
+           
+            Gizmos.DrawWireSphere(transform.position, characterStatusInfo.AttackRange);
         }
     }
 }

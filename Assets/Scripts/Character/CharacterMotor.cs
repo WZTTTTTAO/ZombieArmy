@@ -56,11 +56,6 @@ namespace ZombieArmy.Character
             EventManager.RemoveListener("UnitArriveDestination" + transform.parent.name, OnUnitArriveDestination);
         }
 
-        private void OnDisable()
-        {
-            UnregisterArriveEvent();
-        }
-
         //任意一个单位到达终点后 其他单位停止移动
         private void OnUnitArriveDestination()
         {

@@ -100,5 +100,13 @@ namespace ZombieArmy
             if (instance._typedEvents.TryGetValue(eventName, out evt))
                 evt.Invoke(data);
         }
+
+        private void OnDisable()
+        {
+            foreach (var eventName in _events.Keys)
+            {
+                _events[eventName].RemoveAllListeners();
+            }
+        }
     }
 }
