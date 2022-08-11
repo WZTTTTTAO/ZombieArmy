@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4037065689700016719}
   - component: {fileID: 4390274259172217993}
   - component: {fileID: 698547466571421191}
+  - component: {fileID: -61849497706820472}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Zombie
@@ -227,6 +228,19 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: bfd86ee1917f24c328aed8798e5febe8,
     type: 2}
   currentHealth: 0
+--- !u!114 &-61849497706820472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4037065689700016714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c58a7c3a6381b4c9c653e6af039bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marshSlowd: 0.2
 --- !u!1 &4037065690735808993
 GameObject:
   m_ObjectHideFlags: 0
