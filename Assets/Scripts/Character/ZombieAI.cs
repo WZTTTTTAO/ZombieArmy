@@ -30,6 +30,7 @@ namespace ZombieArmy.Character
         {
             characterStatusInfo = GetComponent<CharacterStatus>().characterStatusInfo;
             motor = GetComponent<CharacterMotor>();
+            
         }
 
         private void Update()

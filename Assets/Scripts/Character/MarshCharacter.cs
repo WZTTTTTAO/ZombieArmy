@@ -11,6 +11,7 @@ namespace ZombieArmy.Character
         private NavMeshAgent nav;
         public float marshSlowd = 0.2f;
         private float Speed;
+
         void Start()
         {
             nav = GetComponent<NavMeshAgent>();
@@ -20,14 +21,16 @@ namespace ZombieArmy.Character
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "Marsh")
+            if (collision .gameObject .tag =="Marsh")
             {
                 nav.speed = Speed * marshSlowd;
             }
+
         }
+  
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.gameObject.tag == "Marsh")
+            if (collision  .gameObject .tag == "Marsh")
             {
                 nav.speed = Speed;
             }

@@ -508,6 +508,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1976375146}
     m_Modifications:
+    - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
+        type: 3}
+      propertyPath: m_CookingOptions
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8863672745956861826, guid: f0a2d433475fb3e4d87fc19c17d8b288,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
