@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Common;
 using UnityEngine;
 using ZombieArmy.Character;
+using ZombieArmy.Unit;
 
 namespace ZombieArmy.UI
 {
@@ -25,6 +26,8 @@ namespace ZombieArmy.UI
 
         [SerializeField] private Transform aimer;
 
+        [SerializeField] private LayerMask raycastHitLayerMask;
+
         private void Start()
         {
             lineRenderer = GetComponent<LineRenderer>();
@@ -37,7 +40,7 @@ namespace ZombieArmy.UI
 
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (!Physics.Raycast(mouseRay, out hit)) return;
+            if (!Physics.Raycast(mouseRay, out hit, raycastHitLayerMask)) return;
 
             point3 = hit.point;
 
@@ -58,14 +61,14 @@ namespace ZombieArmy.UI
                 lineRenderer.startColor = Color.green;
                 lineRenderer.endColor = Color.green;
                 aimer.GetComponent<SpriteRenderer>().color = Color.green;
-                FormationManager.Instance.unitsCanAttack = false;
+                UnitManager.Instance.unitsCanAttack = false;
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
             {
                 lineRenderer.startColor = Color.red;
                 lineRenderer.endColor = Color.red;
                 aimer.GetComponent<SpriteRenderer>().color = Color.red;
-                FormationManager.Instance.unitsCanAttack = true;
+                UnitManager.Instance.unitsCanAttack = true;
             }
         }
 

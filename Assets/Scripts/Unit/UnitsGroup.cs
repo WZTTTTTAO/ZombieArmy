@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
+using ZombieArmy.Character;
 
-namespace ZombieArmy.Character
+namespace ZombieArmy.Unit
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UnitsGroup
+	public class UnitGroup
 	{
 		public Transform groupParent;
 
@@ -18,7 +19,7 @@ namespace ZombieArmy.Character
 
         public float maxDistance;
 
-        public UnitsGroup(Transform groupParent)
+        public UnitGroup(Transform groupParent)
         {
             UpdateUnitsGroup(groupParent);
         }

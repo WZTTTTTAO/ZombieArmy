@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZombieArmy.Unit;
 using Random = UnityEngine.Random;
 
 namespace ZombieArmy.Character
@@ -42,7 +43,7 @@ namespace ZombieArmy.Character
             motor.SetNavAgentStopped(false);
 
             //如果攻击范围内有敌人 则停止寻路并攻击敌人 (如果被强制停止攻击，则停止攻击)
-            if (overlapEnemyCount == 0 || !FormationManager.Instance.unitsCanAttack) return;
+            if (overlapEnemyCount == 0 || !UnitManager.Instance.unitsCanAttack) return;
             motor.SetNavAgentStopped(true);
 
             //根据攻击时间间隔计算攻击

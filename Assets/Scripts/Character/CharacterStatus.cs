@@ -19,6 +19,8 @@ namespace ZombieArmy.Character
         //首击反馈
         private MMF_Player hitFeedbacksPlayer;
 
+        public event Action<float> OnDamaged;
+
         private void Awake()
         {
             currentHealth = characterStatusInfo.Health;
@@ -34,6 +36,7 @@ namespace ZombieArmy.Character
 			currentHealth -= amount;
             //播放所有受击反馈效果
             hitFeedbacksPlayer?.PlayFeedbacks();
+            OnDamaged?.Invoke(currentHealth / characterStatusInfo.Health);
 			if (currentHealth <= 0)
             {
                 OnDeath();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ZombieArmy.UI;
+using ZombieArmy.Unit;
 
 namespace ZombieArmy.Character
 {
@@ -26,7 +27,7 @@ namespace ZombieArmy.Character
             //先储存父物体 再将父物体设为空 使FormationManager通过查找子物体更新队伍成员时 查找不到该物体
             transform.parent = null;
             //FormationManager根据父物体更新新的成员
-            FormationManager.Instance.currentSelectedUnitsGroup.UpdateUnitsGroup(groupParent);
+            UnitManager.Instance.currentSelectedUnitsGroup.UpdateUnitsGroup(groupParent);
 
             //如果队伍成员全部死亡
             if (groupParent.childCount == 0)

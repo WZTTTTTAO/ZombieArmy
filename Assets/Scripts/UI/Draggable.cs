@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using ZombieArmy.Character;
+using ZombieArmy.Unit;
 
 namespace ZombieArmy.UI
 {
@@ -19,7 +20,7 @@ namespace ZombieArmy.UI
 
         [SerializeField] private Transform unitsGroup;
 
-        private UnitsGroup currentSelectedUnitsGroup;
+        private UnitGroup currentSelectedUnitsGroup;
 
         private void Awake()
         {
@@ -36,7 +37,7 @@ namespace ZombieArmy.UI
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            currentSelectedUnitsGroup = FormationManager.Instance.ChangeSelectedUnits(unitsGroup);
+            currentSelectedUnitsGroup = UnitManager.Instance.ChangeSelectedUnits(unitsGroup);
             if (currentSelectedUnitsGroup.groupMotors == null) return;
 
             canvasGroup.blocksRaycasts = false;
@@ -64,7 +65,7 @@ namespace ZombieArmy.UI
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 1f;
             rectTransform.anchoredPosition = beginDragPosition;
-            FormationManager.Instance.MoveCurrentUnitsToMousePosition();
+            UnitManager.Instance.MoveCurrentUnitsToMousePosition();
             CameraController.Instance.isDraggingUI = false;
             Bezier.Instance.StopDrawingCurve();
         }

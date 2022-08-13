@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using Common;
 using UnityEngine;
 
-namespace ZombieArmy.Character
+namespace ZombieArmy.Unit
 {
 	/// <summary>
 	/// 编队管理器
 	/// </summary>
-	public class FormationManager : MonoSingleton<FormationManager>
+	public class UnitManager : MonoSingleton<UnitManager>
 	{
         /// 当前选中的单位
         //public CharacterMotor[] currentSelectedUnits { get; private set; }
 
-        public UnitsGroup currentSelectedUnitsGroup { get; private set; }
+        public UnitGroup currentSelectedUnitsGroup { get; private set; }
 
         private Vector3 centralPoint;
 		//初始控制单位
@@ -24,7 +24,7 @@ namespace ZombieArmy.Character
 
         private void Start()
         {
-            currentSelectedUnitsGroup = new UnitsGroup(initialUnitsGroup);
+            currentSelectedUnitsGroup = new UnitGroup(initialUnitsGroup);
             //currentSelectedUnits = GetUnitsByTransParent(initialUnitsGroup);
             RegisterArrivalEventForCurrentSelectedUnits();
         }
@@ -37,7 +37,7 @@ namespace ZombieArmy.Character
         //    }
         //}
 
-        public UnitsGroup ChangeSelectedUnits(Transform unitsGroupParent)
+        public UnitGroup ChangeSelectedUnits(Transform unitsGroupParent)
         {
             UnregisterArrivalEventForCurrentSelectedUnits();
             currentSelectedUnitsGroup.UpdateUnitsGroup(unitsGroupParent);
