@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using ZombieArmy.UI;
 
@@ -15,10 +16,13 @@ namespace ZombieArmy.Character
 		public CharacterStatusInfo characterStatusInfo;
 		//血量
 		public float currentHealth;
+        //首击反馈
+        private MMF_Player hitFeedbacksPlayer;
 
         private void Awake()
         {
             currentHealth = characterStatusInfo.Health;
+            hitFeedbacksPlayer = transform.Find("hit fb").GetComponent<MMF_Player>();
         }
 
         /// <summary>
@@ -28,6 +32,8 @@ namespace ZombieArmy.Character
         public void TakeDamage(float amount)
         {
 			currentHealth -= amount;
+            //播放所有受击反馈效果
+            hitFeedbacksPlayer?.PlayFeedbacks();
 			if (currentHealth <= 0)
             {
                 OnDeath();

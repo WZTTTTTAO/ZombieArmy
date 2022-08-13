@@ -4073,7 +4073,6 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: bfd86ee1917f24c328aed8798e5febe8,
     type: 2}
   currentHealth: 0
-  sb: 0
 --- !u!1 &6455343038808462840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,7 +4602,6 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: c24ba4103fb76432bb1b0f45568634a5,
     type: 2}
   currentHealth: 0
-  sb: 0
 --- !u!4 &8722238680034964368
 Transform:
   m_ObjectHideFlags: 0
@@ -4974,4 +4972,3 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: c24ba4103fb76432bb1b0f45568634a5,
     type: 2}
   currentHealth: 0
-  sb: 0

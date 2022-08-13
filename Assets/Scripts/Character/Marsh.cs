@@ -10,10 +10,11 @@ namespace ZombieArmy.Character
         private bool isLeave, inMarsh;
         private float LeaveTime = 2f;
         private NavMeshAgent nav;
-        private float OriginSpeed, NowSpeed;
+        public float OriginSpeed, NowSpeed;
         private void Awake()
         {
             nav  = FindObjectOfType<NavMeshAgent>();
+            Debug.Log(nav.gameObject.name);
             OriginSpeed = nav.speed;
             NowSpeed = nav.speed * marshSlowd;
         }
@@ -25,6 +26,7 @@ namespace ZombieArmy.Character
                 if (nav.speed <OriginSpeed )
                 {
                     nav.speed += Time.deltaTime * (OriginSpeed - NowSpeed) / LeaveTime;
+                    Debug.Log("!!!!!!!!!!!!!!!!! " + nav.gameObject.name);
                 }
                 LeaveTime -= Time.deltaTime;
             }
@@ -33,6 +35,7 @@ namespace ZombieArmy.Character
                 isLeave = false;
                 LeaveTime = 2f;
                 nav.speed = OriginSpeed;
+                Debug.Log("@@@@@@@@@@@@@@@@2 " + nav.gameObject.name);
 
             }
         }
@@ -51,6 +54,7 @@ namespace ZombieArmy.Character
             {
                 inMarsh = false;
                 isLeave = true;
+                Debug.Log("11111111111111");
             }
         }
     }

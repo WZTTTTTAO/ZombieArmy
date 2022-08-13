@@ -357,7 +357,7 @@ PrefabInstance:
     - target: {fileID: 4037065689700016714, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
       propertyPath: m_Name
-      value: Zombie (1)
+      value: Zombie 4
       objectReference: {fileID: 0}
     - target: {fileID: 4037065689700016715, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
@@ -821,7 +821,7 @@ PrefabInstance:
     - target: {fileID: 4037065689700016714, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
       propertyPath: m_Name
-      value: Zombie
+      value: Zombie 3
       objectReference: {fileID: 0}
     - target: {fileID: 4037065689700016715, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
@@ -1808,7 +1808,7 @@ PrefabInstance:
     - target: {fileID: 4037065689700016714, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
       propertyPath: m_Name
-      value: Zombie (2)
+      value: Zombie 5
       objectReference: {fileID: 0}
     - target: {fileID: 4037065689700016715, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
