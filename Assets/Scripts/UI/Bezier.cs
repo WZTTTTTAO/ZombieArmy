@@ -61,14 +61,14 @@ namespace ZombieArmy.UI
                 lineRenderer.startColor = Color.green;
                 lineRenderer.endColor = Color.green;
                 aimer.GetComponent<SpriteRenderer>().color = Color.green;
-                UnitManager.Instance.unitsCanAttack = false;
+                UnitManager.Instance.CurrentUnitsCanAttack = false;
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
             {
                 lineRenderer.startColor = Color.red;
                 lineRenderer.endColor = Color.red;
                 aimer.GetComponent<SpriteRenderer>().color = Color.red;
-                UnitManager.Instance.unitsCanAttack = true;
+                UnitManager.Instance.CurrentUnitsCanAttack = true;
             }
         }
 

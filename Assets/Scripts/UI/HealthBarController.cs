@@ -73,7 +73,6 @@ namespace ZombieArmy.UI
 		public void OnCharacterDamaged(float healthRatio)
         {
 			healthImg.fillAmount = healthRatio;
-
 			if (healthRatio <= 0)
 				Destroy(gameObject);
 			else if (healthRatio <= 0.2f)

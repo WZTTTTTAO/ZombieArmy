@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
+using ZombieArmy.Character;
 
 namespace ZombieArmy.Unit
 {
@@ -20,7 +21,24 @@ namespace ZombieArmy.Unit
 		//初始控制单位
 		[SerializeField] private Transform initialUnitsGroup;
 
-        public bool unitsCanAttack;
+        private bool currentUnitsCanAttack;
+
+        public bool CurrentUnitsCanAttack
+        {
+            get
+            {
+                return currentUnitsCanAttack;
+            }
+            set
+            {
+                currentUnitsCanAttack = value;
+                //设置所有当前选中的僵尸是否可以攻击
+                foreach (var unitMotor in currentSelectedUnitsGroup.groupMotors)
+                {
+                    unitMotor.GetComponent<ZombieAI>().unitCanAttack = value;
+                }
+            }
+        }
 
         private void Start()
         {

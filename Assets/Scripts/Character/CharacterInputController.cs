@@ -12,12 +12,29 @@ namespace ZombieArmy.Character
 	{
         private RaycastHit hit;
 
+        [SerializeField] private Transform aimer;
+
+        [SerializeField] private RectTransform screenDragArea;
+
+        private RaycastHit[] raycastHits = new RaycastHit[5];
+        public Collider[] colliders = new Collider[5];
+
+        private Ray mouseRay;
+
         private void Update()
         {
+            aimer.gameObject.SetActive(RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition));
+
+            mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (!Physics.Raycast(mouseRay, out hit)) return;
+
+            SetAimerPosAndColor(hit.point);
+
             if (Input.GetMouseButtonDown(0))
             {
-                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (!Physics.Raycast(mouseRay, out hit)) return;
+                //Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                //if (!Physics.Raycast(mouseRay, out hit)) return;
 
                 //如果左键点击僵尸，则让僵尸进行移动
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
@@ -25,38 +42,93 @@ namespace ZombieArmy.Character
                     UnitManager.Instance.ChangeSelectedUnits(hit.transform.parent);
                 }
                 //如果没有点击到僵尸 则可以进行屏幕拖拽
-                else 
+                else
                 {
                     CameraController.Instance.OnLeftMousePressed();
                 }
-                
+
             }
 
             else if (Input.GetMouseButtonDown(1))
             {
-                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (!Physics.Raycast(mouseRay, out hit)) return;
+                //Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                //if (!Physics.Raycast(mouseRay, out hit)) return;
 
                 //如果点击到地面视为移动
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    UnitManager.Instance.unitsCanAttack = false;
+                    UnitManager.Instance.CurrentUnitsCanAttack = false;
                     UnitManager.Instance.MoveCurrentUnitsToMousePosition();
                 }
                 //如果点击到敌人视为A过去
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
                 {
-                    UnitManager.Instance.unitsCanAttack = true;
+                    UnitManager.Instance.CurrentUnitsCanAttack = true;
                     UnitManager.Instance.MoveCurrentUnitsToMousePosition();
                 }
                 else
-                    UnitManager.Instance.unitsCanAttack = false;
+                    UnitManager.Instance.CurrentUnitsCanAttack = false;
 
 
             }
 
 
+        }
+
+        private RaycastHit GetRaycastHitByPriority()
+        {
+            bool hasZombie = false;
+            RaycastHit zombieHit = raycastHits[0], groundHit = raycastHits[0];
+
+            foreach (var raycastHit in raycastHits)
+            {
+                if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
+                {
+                    return raycastHit;
+                }
+                else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
+                {
+                    zombieHit = raycastHit;
+                    hit = raycastHit;
+                    hasZombie = true;
+                }
+                else
+                    groundHit = hit;
+            }
+
+            if (hasZombie)
+                return zombieHit;
+            else
+                return groundHit;
+
+            
+        }
+
+        private void SetAimerPosAndColor(Vector3 hitPos)
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
+            {
+                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimer.GetComponent<SpriteRenderer>().color = Color.blue;
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
+            {
+                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimer.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                aimer.GetComponent<SpriteRenderer>().color = Color.green;
+                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+            }
+
+
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(mouseRay);
         }
     }
 }
