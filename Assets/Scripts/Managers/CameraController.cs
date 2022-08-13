@@ -61,22 +61,31 @@ namespace ZombieArmy
             transform.position = movePosition;
         }
 
-        int count;
+        public void OnLeftMousePressed()
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition))
+            {
+                screenDragOriginalPosition = Input.mousePosition;
+                isDraggingScreen = true;
+            }
+        }
+
+
         //屏幕拖拽控制
         private void ScreenDraggingControl()
         {
             //按下鼠标后 如果鼠标在拖拽区域范围内 则记录起始位置 并可以拖拽
-            if (Input.GetMouseButtonDown(1))
-            {
-                if(RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition))
-                {
-                    screenDragOriginalPosition = Input.mousePosition;
-                    isDraggingScreen = true;
-                }
-            }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    if(RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition))
+            //    {
+            //        screenDragOriginalPosition = Input.mousePosition;
+            //        isDraggingScreen = true;
+            //    }
+            //}
 
             //如果鼠标没有按下 则不更新相机位置
-            if (!Input.GetMouseButton(1)){ startDragTime = 0; isDraggingScreen = false; return; }
+            if (!Input.GetMouseButton(0)){ startDragTime = 0; isDraggingScreen = false; return; }
             //如果没有拖拽屏幕 则不更新相机位置
             if (!isDraggingScreen) return;
             //如果鼠标拖拽后停着不动 则不更新相机位置

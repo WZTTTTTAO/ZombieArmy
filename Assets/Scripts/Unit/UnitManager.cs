@@ -20,7 +20,7 @@ namespace ZombieArmy.Unit
 		//初始控制单位
 		[SerializeField] private Transform initialUnitsGroup;
 
-        public bool unitsCanAttack { get; set; }
+        public bool unitsCanAttack;
 
         private void Start()
         {

@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 4037065690735808994}
   - component: {fileID: 4037065690735808997}
   - component: {fileID: 4037065690735808996}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,6 +430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hit fb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426904729082376935, guid: 9ffa702174c0e401390536ca8eb6ad74,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8632264057605814631, guid: 9ffa702174c0e401390536ca8eb6ad74,
         type: 3}
