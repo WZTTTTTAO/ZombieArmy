@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef392ca5b0f64cedae70bdd06586102, type: 3}
   m_Name: Melee Zombie
   m_EditorClassIdentifier: 
-  atk: 1
-  health: 20
-  attackInterval: 0.5
-  attackRange: 3
+  Atk: 1
+  maxHealth: 30
+  AttackInterval: 1
+  attackRange: 2
   hatred: 1

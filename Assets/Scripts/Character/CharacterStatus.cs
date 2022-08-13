@@ -23,7 +23,7 @@ namespace ZombieArmy.Character
 
         private void Awake()
         {
-            currentHealth = characterStatusInfo.Health;
+            currentHealth = characterStatusInfo.MaxHealth;
             hitFeedbacksPlayer = transform.Find("hit fb").GetComponent<MMF_Player>();
         }
 
@@ -36,7 +36,9 @@ namespace ZombieArmy.Character
 			currentHealth -= amount;
             //播放所有受击反馈效果
             hitFeedbacksPlayer?.PlayFeedbacks();
-            OnDamaged?.Invoke(currentHealth / characterStatusInfo.Health);
+            //血条UI扣血
+            OnDamaged?.Invoke(currentHealth / characterStatusInfo.MaxHealth);
+
 			if (currentHealth <= 0)
             {
                 OnDeath();

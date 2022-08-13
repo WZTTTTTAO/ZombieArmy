@@ -19,10 +19,12 @@ namespace ZombieArmy.Character
                 Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (!Physics.Raycast(mouseRay, out hit)) return;
 
+                //如果左键点击僵尸，则让僵尸进行移动
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
                 {
                     UnitManager.Instance.ChangeSelectedUnits(hit.transform.parent);
                 }
+                //如果没有点击到僵尸 则可以进行屏幕拖拽
                 else 
                 {
                     CameraController.Instance.OnLeftMousePressed();
@@ -36,14 +38,17 @@ namespace ZombieArmy.Character
 
                 if (!Physics.Raycast(mouseRay, out hit)) return;
 
+                //如果点击到地面视为移动
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     UnitManager.Instance.unitsCanAttack = false;
                     UnitManager.Instance.MoveCurrentUnitsToMousePosition();
                 }
+                //如果点击到敌人视为A过去
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
                 {
                     UnitManager.Instance.unitsCanAttack = true;
+                    UnitManager.Instance.MoveCurrentUnitsToMousePosition();
                 }
                 else
                     UnitManager.Instance.unitsCanAttack = false;

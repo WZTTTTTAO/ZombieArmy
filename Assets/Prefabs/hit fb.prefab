@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8632264057605814631}
   - component: {fileID: 3509412544950082273}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: hit fb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

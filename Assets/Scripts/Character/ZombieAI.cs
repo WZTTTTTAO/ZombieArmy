@@ -16,8 +16,8 @@ namespace ZombieArmy.Character
 		[SerializeField] private Transform attackTarget;
         //敌人layer
         [SerializeField] private LayerMask enemyLayer;
-        //角色状态信息
-        private CharacterStatusInfo characterStatusInfo;
+        //角色状态信息类对象
+        public CharacterStatusInfo characterStatusInfoInstance { get; set; }
         //角色马达
         private CharacterMotor motor;
 
@@ -27,9 +27,9 @@ namespace ZombieArmy.Character
         //攻击范围内的所有敌人目标 最多10个敌人
         public Collider[] withinAttackRangeEnemies = new Collider[10];
 
-        private void Start()
+        private void Awake()
         {
-            characterStatusInfo = GetComponent<CharacterStatus>().characterStatusInfo;
+            characterStatusInfoInstance = Instantiate(GetComponent<CharacterStatus>().characterStatusInfo);
             motor = GetComponent<CharacterMotor>();
             
         }
@@ -37,7 +37,7 @@ namespace ZombieArmy.Character
         private void Update()
         {
             //检测攻击范围内的敌人
-            int overlapEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, characterStatusInfo.AttackRange, withinAttackRangeEnemies, enemyLayer);
+            int overlapEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, characterStatusInfoInstance.AttackRange, withinAttackRangeEnemies, enemyLayer);
             //withinAttackRangeEnemies = Physics.OverlapSphere(transform.position, characterStatusInfo.AttackRange, enemyLayer);
 
             motor.SetNavAgentStopped(false);
@@ -50,7 +50,7 @@ namespace ZombieArmy.Character
             if (startAttackTime < Time.time)
             {
                 AttackTargetEnemy(withinAttackRangeEnemies, overlapEnemyCount);
-                startAttackTime = Time.time + characterStatusInfo.AttackInterval;
+                startAttackTime = Time.time + characterStatusInfoInstance.AttackInterval;
             }
         }
 
@@ -61,7 +61,7 @@ namespace ZombieArmy.Character
             //面向目标敌人
             //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
             //目标敌人扣血
-            attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
+            attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfoInstance.Atk);
         }
 
         /// <summary>
