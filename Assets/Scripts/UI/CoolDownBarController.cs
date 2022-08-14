@@ -19,11 +19,16 @@ namespace ZombieArmy.UI
         public void OnCoolDownTimeDecreased(float remainRatio)
         {
             if (remainRatio <= 0)
+            {
                 coolDownBarImg.color = coolingFinishedColor;
+                coolDownBarImg.fillAmount = 1;
+            }
             else
+            {
                 coolDownBarImg.color = coolingColor;
-
-            coolDownBarImg.fillAmount = remainRatio;
+                coolDownBarImg.fillAmount = remainRatio;
+            }
+              
         }
     }
 }

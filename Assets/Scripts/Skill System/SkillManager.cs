@@ -44,11 +44,12 @@ namespace ZombieArmy.Skill
         private IEnumerator CoolDownTimeDecrease()
         {
             coolRemain = coolDownTime;
+            coolDownBarController.OnCoolDownTimeDecreased(coolRemain / coolDownTime);
             while (coolRemain > 0) 
             {
-                coolDownBarController.OnCoolDownTimeDecreased(coolRemain / coolDownTime);
                 yield return new WaitForSeconds(1);
                 coolRemain--;
+                coolDownBarController.OnCoolDownTimeDecreased(coolRemain / coolDownTime);
             }
         }
 

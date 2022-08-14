@@ -707,6 +707,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2045977640}
     m_Modifications:
+    - target: {fileID: 270052413102827773, guid: 64c3f8cf9bae446479ebc72aa54faf84,
+        type: 3}
+      propertyPath: coolingFinishedColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7330711825923424660, guid: 64c3f8cf9bae446479ebc72aa54faf84,
         type: 3}
       propertyPath: m_Name
