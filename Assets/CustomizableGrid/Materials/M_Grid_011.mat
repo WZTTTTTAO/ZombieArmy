@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextTex:
-        m_Texture: {fileID: 2800000, guid: 10ced158fbfcaa54baa9bdf16c869284, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8dddd978b1403084fac3c40562e0db3b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -62,7 +62,7 @@ Material:
     - _TilingY: 1
     - _WorldPosition: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.011866094, b: 0.13235295, a: 1}
+    - _BaseColor: {r: 0.93923414, g: 0.7607843, b: 1, a: 1}
     - _BasePatternColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _CenterGridColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
     - _CenterLineColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
