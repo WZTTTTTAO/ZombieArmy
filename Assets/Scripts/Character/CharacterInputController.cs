@@ -17,7 +17,6 @@ namespace ZombieArmy.Character
         [SerializeField] private RectTransform screenDragArea;
 
         private RaycastHit[] raycastHits = new RaycastHit[5];
-        public Collider[] colliders = new Collider[5];
 
         private Ray mouseRay;
 
@@ -44,7 +43,7 @@ namespace ZombieArmy.Character
                 //如果没有点击到僵尸 则可以进行屏幕拖拽
                 else
                 {
-                    CameraController.Instance.OnLeftMousePressed();
+                    //CameraController.Instance.OnLeftMousePressed();
                 }
 
             }
@@ -106,20 +105,24 @@ namespace ZombieArmy.Character
 
         private void SetAimerPosAndColor(Vector3 hitPos)
         {
+
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
             {
                 aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
                 aimer.GetComponent<SpriteRenderer>().color = Color.blue;
+                aimer.rotation = Quaternion.Euler(90, 0, 0);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
             {
                 aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
                 aimer.GetComponent<SpriteRenderer>().color = Color.red;
+                aimer.rotation = Quaternion.Euler(90, 0, 0);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 aimer.GetComponent<SpriteRenderer>().color = Color.green;
                 aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimer.rotation = Quaternion.FromToRotation(transform.forward, hit.normal) * transform.rotation;
             }
 
 

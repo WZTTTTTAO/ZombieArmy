@@ -27,7 +27,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5001459661989458084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,6 +83,8 @@ MonoBehaviour:
   DebugActive: 0
   FeedbacksList:
   - id: 0
+  - id: 1
+  - id: 2
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -126,3 +129,157 @@ MonoBehaviour:
         FlickerColor: {r: 1, g: 1, b: 1, a: 1}
         MaterialIndexes: 00000000
         UseMaterialPropertyBlocks: 0
+    00000001:
+      type: {class: MMF_Particles, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: 555254407
+        Label: Particles Play
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        Owner: {fileID: 3509412544950082273}
+        DebugActive: 0
+        Mode: 0
+        BoundParticleSystem: {fileID: 5168885426952432666}
+        RandomParticleSystems: []
+        MoveToPosition: 0
+        ActivateOnPlay: 0
+        StopSystemOnInit: 1
+    00000002:
+      type: {class: MMF_Sound, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
+      data:
+        Active: 1
+        UniqueID: 1657452835
+        Label: Sound
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        Owner: {fileID: 3509412544950082273}
+        DebugActive: 0
+        Sfx: {fileID: 0}
+        RandomSfx:
+        - {fileID: 8300000, guid: f399874bf38054861a8e5d29da89fcf2, type: 3}
+        - {fileID: 8300000, guid: 80703cf1f6c334cd39b1b24e9122d6fd, type: 3}
+        - {fileID: 8300000, guid: 925c003d2ed4142959b80c1e03a14992, type: 3}
+        - {fileID: 8300000, guid: 1c97d4b3c4650408c9b8e098d7da70bc, type: 3}
+        TestPlayButton:
+          ButtonText: Debug Play Sound
+        TestStopButton:
+          ButtonText: Debug Stop Sound
+        PlayMethod: 1
+        PoolSize: 10
+        MinVolume: 1
+        MaxVolume: 1
+        MinPitch: 1
+        MaxPitch: 1
+        SfxAudioMixerGroup: {fileID: 0}
+--- !u!1001 &5006035941635760368
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8632264057605814631}
+    m_Modifications:
+    - target: {fileID: 1395712099863456, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_Name
+      value: BloodExplosionDirectional
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 918347a131c946046bb26f54bb2f1e50, type: 3}
+--- !u!4 &5001459661989458084 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4998629997285460, guid: 918347a131c946046bb26f54bb2f1e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 5006035941635760368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5168885426952432666 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198882698100002026, guid: 918347a131c946046bb26f54bb2f1e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 5006035941635760368}
+  m_PrefabAsset: {fileID: 0}

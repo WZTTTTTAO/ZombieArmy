@@ -18,6 +18,8 @@ namespace ZombieArmy.Character
 		public float currentHealth;
         //首击反馈
         private MMF_Player hitFeedbacksPlayer;
+        //死亡反馈
+        private MMF_Player deathFeedbacksPlayer;
 
         public event Action<float> OnDamaged;
 
@@ -25,6 +27,7 @@ namespace ZombieArmy.Character
         {
             currentHealth = characterStatusInfo.MaxHealth;
             hitFeedbacksPlayer = transform.Find("hit fb").GetComponent<MMF_Player>();
+            deathFeedbacksPlayer = transform.Find("death fb").GetComponent<MMF_Player>();
         }
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace ZombieArmy.Character
 
 			if (currentHealth <= 0)
             {
+                deathFeedbacksPlayer?.PlayFeedbacks(transform.position);
                 OnDeath();
                 Death();
             }
@@ -50,7 +54,7 @@ namespace ZombieArmy.Character
 
         private void Death()
         {
-			Destroy(gameObject);
+			Destroy(gameObject,0.1f);
         }
 
 
