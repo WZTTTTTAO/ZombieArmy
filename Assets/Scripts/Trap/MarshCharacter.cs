@@ -27,8 +27,13 @@ namespace ZombieArmy.Character
         {
             if (collision .gameObject .tag =="Marsh")
             {
+<<<<<<< HEAD
                 nav.speed = Speed * marshSlowd;//减速
         
+=======
+                nav.speed = Speed * marshSlowd;
+                Debug.Log("进入");
+>>>>>>> afa92b36c31457640cbcde659fcbfed9e018e762
             }
 
         }

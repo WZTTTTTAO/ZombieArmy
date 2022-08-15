@@ -358,4 +358,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolDownBarImg: {fileID: 5376099209989502868}
   coolingColor: {r: 0, g: 0, b: 0, a: 0.5686275}
-  coolingFinishedColor: {r: 1, g: 1, b: 1, a: 0}
+  coolingFinishedColor: {r: 1, g: 1, b: 1, a: 1}
