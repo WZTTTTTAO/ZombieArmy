@@ -558,15 +558,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1976375146}
     m_Modifications:
+    - target: {fileID: -513864946607404549, guid: f0a2d433475fb3e4d87fc19c17d8b288,
+        type: 3}
+      propertyPath: MarshDamge
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
         type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8863672745956861825, guid: f0a2d433475fb3e4d87fc19c17d8b288,
         type: 3}
@@ -587,6 +592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863672745956861831, guid: f0a2d433475fb3e4d87fc19c17d8b288,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8863672745956861831, guid: f0a2d433475fb3e4d87fc19c17d8b288,
         type: 3}
@@ -4012,6 +4022,12 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4986802581055420625, guid: af77cf395a1650049adf4923c66a1696,
+        type: 3}
+      propertyPath: characterStatusInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: c24ba4103fb76432bb1b0f45568634a5,
+        type: 2}
     - target: {fileID: 8386139800444236629, guid: af77cf395a1650049adf4923c66a1696,
         type: 3}
       propertyPath: m_Drag
@@ -4048,6 +4064,7 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: af77cf395a1650049adf4923c66a1696, type: 3}

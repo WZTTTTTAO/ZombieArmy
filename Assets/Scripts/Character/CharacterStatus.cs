@@ -12,15 +12,16 @@ namespace ZombieArmy.Character
 	/// </summary>
 	public class CharacterStatus : MonoBehaviour
 	{
-		//角色状态信息
-		public CharacterStatusInfo characterStatusInfo;
+        public event EventHandler StudentDeath;//声明事件
+        //角色状态信息
+        public CharacterStatusInfo characterStatusInfo;
 		//血量
 		public float currentHealth;
         //首击反馈
         private MMF_Player hitFeedbacksPlayer;
 
         public event Action<float> OnDamaged;
-
+        public GameObject Zombie;
         private void Awake()
         {
             currentHealth = characterStatusInfo.MaxHealth;
@@ -31,33 +32,49 @@ namespace ZombieArmy.Character
         /// 角色受伤减血
         /// </summary>
         /// <param name="amount">扣除血量数</param>
+        private void Update()
+        {
+            OnDamaged?.Invoke(currentHealth / characterStatusInfo.MaxHealth);
+            if (currentHealth <= 0)
+            {
+                OnDeath();
+                Death();
+            }
+            OnDrawGizmos();
+        }
         public void TakeDamage(float amount)
         {
 			currentHealth -= amount;
             //播放所有受击反馈效果
             hitFeedbacksPlayer?.PlayFeedbacks();
             //血条UI扣血
-            OnDamaged?.Invoke(currentHealth / characterStatusInfo.MaxHealth);
-
-			if (currentHealth <= 0)
-            {
-                OnDeath();
-                Death();
-            }
-        }
+          }
+      
 
         protected virtual void OnDeath() { }
 
         private void Death()
         {
-			Destroy(gameObject);
+            if (gameObject.tag == "Student")
+            {
+                DeathEvent(gameObject ,EventArgs.Empty);
+            }
+            Destroy(gameObject);
         }
 
 
         //显示攻击范围
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, characterStatusInfo.AttackRange);
+            Gizmos.DrawWireSphere(transform.position, GetComponent<StudentAi>().DetectionRange);
         }
+        public void DeathEvent(GameObject go, EventArgs e)  //这个在执行时由外部触发方传参数，谁执行谁定义参数，很灵活方便
+        {
+            if (StudentDeath != null)
+            {
+                StudentDeath(go, e);
+            }
+        }
+        
     }
 }

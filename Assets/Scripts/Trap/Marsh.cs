@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZombieArmy.Unit;
+using Random = UnityEngine.Random;
 using UnityEngine.AI;
 namespace ZombieArmy.Character
 {
@@ -13,48 +16,54 @@ namespace ZombieArmy.Character
         public float OriginSpeed, NowSpeed;
         private void Awake()
         {
-            nav  = FindObjectOfType<NavMeshAgent>();
-            Debug.Log(nav.gameObject.name);
-            OriginSpeed = nav.speed;
-            NowSpeed = nav.speed * marshSlowd;
+           // nav = FindObjectOfType<NavMeshAgent>();
+           // Debug.Log(nav.gameObject.name);
+           // OriginSpeed = nav.speed;
+            //NowSpeed = nav.speed * marshSlowd;
+            
         }
 
-        private  void Update()
+        private void Update()
         {
-            if(isLeave )
+
+            if (isLeave)
             {
-                if (nav.speed <OriginSpeed )
+                if (nav.speed < OriginSpeed)
                 {
                     nav.speed += Time.deltaTime * (OriginSpeed - NowSpeed) / LeaveTime;
-                    Debug.Log("!!!!!!!!!!!!!!!!! " + nav.gameObject.name);
+
                 }
                 LeaveTime -= Time.deltaTime;
             }
-            if (LeaveTime <=0&&isLeave )
+            if (LeaveTime <= 0 && isLeave)
             {
                 isLeave = false;
                 LeaveTime = 2f;
                 nav.speed = OriginSpeed;
-                Debug.Log("@@@@@@@@@@@@@@@@2 " + nav.gameObject.name);
+
 
             }
         }
+        private void OnTriggerEnter(Collider other)
+        {
+            
+        }
         private void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Zombie")||other.CompareTag("Student") && !isLeave && !inMarsh)
+            
+            if (other.CompareTag("Zombie") || other.CompareTag("Student") && !isLeave && !inMarsh)
             {
                 inMarsh = true;
-                other.GetComponent<NavMeshAgent>().speed  = NowSpeed ;
+                other.GetComponent<NavMeshAgent>().speed = NowSpeed;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Zombie")||other .CompareTag("Student"))
+            if (other.CompareTag("Zombie") || other.CompareTag("Student"))
             {
                 inMarsh = false;
                 isLeave = true;
-                Debug.Log("11111111111111");
             }
         }
     }

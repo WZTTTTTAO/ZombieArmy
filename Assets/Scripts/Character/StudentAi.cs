@@ -11,8 +11,8 @@ namespace ZombieArmy.Character
 	public class StudentAi : MonoBehaviour
 	{
 		private NavMeshAgent nav;//移动目标
-        private float Detection = 1000;//侦测范围
-
+        public float DetectionRange = 10;//侦测范围
+        public float AttackRange = 3;//攻击范围
         //攻击的目标
         [SerializeField] private Transform attackTarget;
         //寻路的目标
@@ -27,36 +27,41 @@ namespace ZombieArmy.Character
 		public Collider[] withinAttackRangeEnemies = new Collider[10];
         //侦测范围内的所有敌人 最多十个敌人
         public Collider[] withinDetectionRangeEnemies = new Collider[10];
+        //攻击次数
+        private int AttackNumber=1;
+        private Vector3 Tran;
         void Start()
 		{
 			characterStatusInfo = GetComponent<CharacterStatus>().characterStatusInfo;
             nav = GetComponent<NavMeshAgent>();
-            
+            Tran = gameObject.transform.position ;
             
         }
 
         void Update()
         {
             //检测侦测范围内的敌人
-            int inDetectionDistanceEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, Detection, withinDetectionRangeEnemies, enemyLayer);
+            int inDetectionDistanceEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, DetectionRange, withinDetectionRangeEnemies, enemyLayer);
             //检测攻击范围内的敌人
-            int overlapEnemyCount = Physics.OverlapSphereNonAlloc(transform.position, characterStatusInfo.AttackRange, withinAttackRangeEnemies, enemyLayer);
+            int overlapEnemyCount = Physics.OverlapSphereNonAlloc(transform.position,AttackRange, withinAttackRangeEnemies, enemyLayer);
             //如果房间触发器被触发则学生才会开始索敌
             //先检测侦察范围内是否有敌人，如果有则拉近敌人距离
             //如果攻击范围内有敌人 则攻击敌人
           FindTargetEnemy(withinDetectionRangeEnemies, inDetectionDistanceEnemyCount);
               if (overlapEnemyCount == 0)
              {
-                FindTargetEnemy(withinDetectionRangeEnemies, inDetectionDistanceEnemyCount);
+                nav.destination  = Tran;
             }
 
             //根据攻击时间间隔计算攻击
             if (startAttackTime < Time.time)
                 {
+
+          
                     AttackTargetEnemy(withinAttackRangeEnemies, overlapEnemyCount);
                     startAttackTime = Time.time + characterStatusInfo.AttackInterval;
-                }
-           //}
+             
+           }
 		}
         private void FindTargetEnemy(Collider[] withinDetectionRangeEnemies, int enemyCount = 0)
         {
@@ -67,11 +72,21 @@ namespace ZombieArmy.Character
         {
             //选择目标敌人
             attackTarget = SelectDetectionTargetEnemy(withinAttackRangeEnemies, enemyCount);
-            nav.destination  = attackTarget.position ;  
+            nav.destination  = attackTarget.position ;
             //面向目标敌人
             //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
             //目标敌人扣血
-            attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
+            if (AttackNumber % 3 != 0)
+            {
+                attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
+                AttackNumber++;
+            }
+            else if (AttackNumber%3==0)
+            {
+                attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk*1.5f);
+               // Debug.Log(123456);
+                AttackNumber++;
+            }
         }
 
         /*<summary>
