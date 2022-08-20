@@ -37,5 +37,14 @@ namespace ZombieArmy.Character
             }
 
         }
+
+        //显示攻击范围
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, characterStatusInfo.AttackRange);
+        }
+
+
     }
 }
