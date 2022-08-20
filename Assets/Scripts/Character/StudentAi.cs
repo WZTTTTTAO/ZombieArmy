@@ -32,7 +32,7 @@ namespace ZombieArmy.Character
         private Vector3 Tran;
         void Start()
 		{
-			characterStatusInfo = GetComponent<CharacterStatus>().characterStatusInfo;
+			characterStatusInfo = GetComponent<StudentStatus>().characterStatusInfo;
             nav = GetComponent<NavMeshAgent>();
             Tran = gameObject.transform.position ;
             
@@ -56,11 +56,8 @@ namespace ZombieArmy.Character
             //根据攻击时间间隔计算攻击
             if (startAttackTime < Time.time)
                 {
-
-          
                     AttackTargetEnemy(withinAttackRangeEnemies, overlapEnemyCount);
-                    startAttackTime = Time.time + characterStatusInfo.AttackInterval;
-             
+                    startAttackTime = Time.time + characterStatusInfo.AttackInterval;            
            }
 		}
         private void FindTargetEnemy(Collider[] withinDetectionRangeEnemies, int enemyCount = 0)

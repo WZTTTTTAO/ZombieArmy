@@ -59,7 +59,7 @@ namespace ZombieArmy.Character
            }
            if (other.CompareTag("Student"))
             {
-                other.GetComponent<CharacterStatus>().currentHealth -= MarshDamge;
+                other.GetComponent<StudentStatus>().currentHealth -= MarshDamge;
             }
       }
 

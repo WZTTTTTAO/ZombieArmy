@@ -1,56 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Belt : MonoBehaviour
 {
-    public GameObject belt;
-    public Transform endpoint;//获取终点位置
-    public int currentSpeed;//当前速度
-    public int maxSpeed;//传送带最大速度
-    public bool belton = false;//判断传送带是否开启
-
+    public Transform Endpoint;//获取终点位置
+    private float  DirectionX;
+    private float  DirectionZ;
+    public float parameter;
+    private void Start()
+    {
+        DirectionX = Endpoint.position .x  - gameObject.transform.position .x ;
+        DirectionZ = Endpoint.position.z - gameObject.transform.position.z;
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PowerSwitch();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeSpeed();
-        }
-    }
-    void ChangeSpeed()
-    {
-        if (currentSpeed >= maxSpeed)
-        {
-            currentSpeed = 0;
-        }
-        else
-        {
-            currentSpeed++;
-        }
-    }
-    void PowerSwitch()
-    {
-        if (belton)
-        {
-            belton = false;
-        }
-        else
-        {
-            belton = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider collider)
-    {
-       
-        
-            collider.transform.position = Vector3.MoveTowards(collider.transform.position, endpoint.position, currentSpeed * Time.deltaTime);
         
     }
 
+ 
+    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.GetComponent<Rigidbody>().AddForce(DirectionX, 0, DirectionZ, ForceMode.Acceleration);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        other.gameObject.GetComponent<Rigidbody>().AddForce(-DirectionX, 0, -DirectionZ, ForceMode.Acceleration);
+    }
 }
