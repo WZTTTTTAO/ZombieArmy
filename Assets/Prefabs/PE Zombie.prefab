@@ -325,7 +325,6 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: bfd86ee1917f24c328aed8798e5febe8,
     type: 2}
   currentHealth: 0
-  Zombie: {fileID: 0}
 --- !u!114 &7738366165105887694
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,9 +13,6 @@ namespace ZombieArmy.Character
     public class StudentStatus : CharacterStatus
     {
         public event EventHandler StudentDeath;//声明事件
-       
-        public GameObject Zombie;
-      
         protected override void OnDeath()
         {
             base.OnDeath();
