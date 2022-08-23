@@ -107,6 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613c6357fcc4ba34c8bd2a19924091a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marshSlowd: 0.2
-  marshFast: 1.5
-  MarshDamge: 0.5
+  marshSlowd: 0.5

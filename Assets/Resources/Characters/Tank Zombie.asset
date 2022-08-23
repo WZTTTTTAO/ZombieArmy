@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tank Zombie
   m_EditorClassIdentifier: 
   Atk: 0.5
-  maxHealth: 50
+  maxHealth: 5
   AttackInterval: 1
   attackRange: 1
   hatred: 3

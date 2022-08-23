@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DetectionRange: 5
-  AttackRange: 3
+  AttackRange: 2
   attackTarget: {fileID: 0}
   FindTarget: {fileID: 0}
   enemyLayer:
