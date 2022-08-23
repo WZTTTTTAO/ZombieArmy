@@ -18,6 +18,7 @@ namespace ZombieArmy.Character
         {
             base.OnDeath();
             RemoveSelfFromUnitsGroup();
+            OnDamaged = null;
         }
 
         //在销毁物体前 将自身从当前队伍中移除
@@ -30,10 +31,10 @@ namespace ZombieArmy.Character
             UnitManager.Instance.currentSelectedUnitsGroup.UpdateUnitsGroup(groupParent);
 
             //如果队伍成员全部死亡
-            if (groupParent.childCount == 0)
+            if (groupParent?.childCount == 0)
             {
                 //将控制队伍移动的UI关闭
-                unitGroupUI.gameObject.SetActive(false);
+                unitGroupUI?.gameObject.SetActive(false);
             }
 
         }

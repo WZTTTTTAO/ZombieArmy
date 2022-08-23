@@ -68,15 +68,16 @@ namespace ZombieArmy.Character
        {
             if (TrapManager.MarshType == 1)
             {
-                if (other.CompareTag("Zombie"))
-                {
-                    other.GetComponent<ZombieStatus>().currentHealth -= MarshDamge;
+                other.GetComponent<CharacterStatus>()?.TakeDamage(MarshDamge);
+                //if (other.CompareTag("Zombie"))
+                //{
+                //    other.GetComponent<ZombieStatus>().currentHealth -= MarshDamge;
 
-                }
-                if (other.CompareTag("Student"))
-                {
-                    other.GetComponent<StudentStatus>().currentHealth -= MarshDamge;
-                }
+                //}
+                //if (other.CompareTag("Student"))
+                //{
+                //    other.GetComponent<StudentStatus>().currentHealth -= MarshDamge;
+                //}
             }
       }
 

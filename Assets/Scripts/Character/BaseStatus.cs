@@ -12,7 +12,7 @@ namespace ZombieArmy.Character
 		//角色状态信息
 		public CharacterStatusInfo characterStatusInfo;
 		//血量
-		public float currentHealth;
+		[SerializeField] protected float currentHealth;
 
         protected void Awake()
         {

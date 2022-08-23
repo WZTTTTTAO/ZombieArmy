@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Common;
 using UnityEngine;
 using ZombieArmy.Character;
 using ZombieArmy.UI;
@@ -10,7 +11,7 @@ namespace ZombieArmy.Unit
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UnitSpawner : MonoBehaviour
+	public class UnitSpawner : MonoSingleton<UnitSpawner>
 	{
 		[SerializeField] private Transform[] spawnPositions;
 
@@ -18,11 +19,15 @@ namespace ZombieArmy.Unit
 
         [SerializeField] private RectTransform canvasTrans;
 
-        private void Awake()
+        [SerializeField] private GameObject meleeZombiePrefab;
+        [SerializeField] private Transform meleeZombieGroupTrans;
+
+        public override void Init()
         {
+            base.Init();
 			SetupHealthBarUI();
         }
-
+      
         private void SetupHealthBarUI()
         {
             for (int i = 0; i < spawnPositions.Length; i++)
@@ -35,11 +40,15 @@ namespace ZombieArmy.Unit
                     HealthBarController healthBarController = healthBarGO.GetComponent<HealthBarController>();
                     healthBarController.SetCanvasTrans(canvasTrans);
                     healthBarController.SetTarget(spawnPositions[i].GetChild(j), 2f);
-                    spawnPositions[i].GetChild(j).GetComponent<CharacterStatus>().OnDamaged += healthBarController.OnCharacterDamaged;
+                    spawnPositions[i].GetChild(j).GetComponent<CharacterStatus>().OnDamaged = healthBarController.OnCharacterDamaged;
                 }
             }
         }
 
-       
+        public void AddUnitToUnitGroup(Transform spawnPoint)
+        {
+            GameObject zombieGO = Instantiate(meleeZombiePrefab, spawnPoint.position, Quaternion.identity);
+            zombieGO.transform.parent = meleeZombieGroupTrans;
+        }
     }
 }

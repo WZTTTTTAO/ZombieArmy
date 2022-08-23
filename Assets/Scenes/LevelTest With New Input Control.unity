@@ -785,6 +785,9 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 7747267725845955537, guid: 84a62a777d2474746998d1f4e081b1a8,
     type: 3}
   canvasTrans: {fileID: 615316799}
+  meleeZombiePrefab: {fileID: 4037065689700016714, guid: 0b3bc094e4f17456d819ea8bdf499a52,
+    type: 3}
+  meleeZombieGroupTrans: {fileID: 1815379829}
 --- !u!1001 &160910338
 PrefabInstance:
   m_ObjectHideFlags: 0

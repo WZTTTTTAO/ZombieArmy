@@ -15,15 +15,16 @@ namespace ZombieArmy.Character
         {
             if (TrapManager.KilltrapType == 1)
             {
-                if (other.CompareTag("Zombie"))
-                {
-                    other.GetComponent<ZombieStatus>().currentHealth -= KillTrapDamge;
+                other.GetComponent<CharacterStatus>()?.TakeDamage(KillTrapDamge);
+                //if (other.CompareTag("Zombie"))
+                //{
+                //    other.GetComponent<ZombieStatus>().currentHealth -= KillTrapDamge;
 
-                }
-                if (other.CompareTag("Student"))
-                {
-                    other.GetComponent<StudentStatus>().currentHealth -= KillTrapDamge;
-                }
+                //}
+                //if (other.CompareTag("Student"))
+                //{
+                //    other.GetComponent<StudentStatus>().currentHealth -= KillTrapDamge;
+                //}
             }
         }
     }

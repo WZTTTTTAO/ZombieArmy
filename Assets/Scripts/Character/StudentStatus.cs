@@ -12,25 +12,16 @@ namespace ZombieArmy.Character
     /// </summary>
     public class StudentStatus : CharacterStatus
     {
-        public event EventHandler StudentDeath;//声明事件
         protected override void OnDeath()
         {
             base.OnDeath();
-            DeathEvent(gameObject, EventArgs.Empty);
+            Unit.UnitSpawner.Instance.AddUnitToUnitGroup(transform);
         }
 
         //显示侦测范围
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.position, GetComponent<StudentAi>().DetectionRange);
-        }
-
-        public void DeathEvent(GameObject go, EventArgs e)  
-        {
-            if (StudentDeath != null)
-            {
-                StudentDeath(go, e);
-            }
         }
     }
 }

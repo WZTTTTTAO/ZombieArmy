@@ -15,7 +15,7 @@ namespace ZombieArmy.Character
         //首击反馈
         private MMF_Player hitFeedbacksPlayer;
 
-        public event Action<float> OnDamaged;
+        public Action<float> OnDamaged;
 
         protected new void Awake()
         {

@@ -33,6 +33,7 @@ namespace ZombieArmy.Unit
             {
                 currentUnitsCanAttack = value;
                 //设置所有当前选中的僵尸是否可以攻击
+                if (currentSelectedUnitsGroup == null || currentSelectedUnitsGroup.groupMotors == null) return;
                 foreach (var unitMotor in currentSelectedUnitsGroup.groupMotors)
                 {
                     unitMotor.GetComponent<ZombieAI>().unitCanAttack = value;
@@ -104,7 +105,7 @@ namespace ZombieArmy.Unit
             if (Physics.Raycast(mouseInputRay, out hit))
             {
                 Vector3 moveToPosition = hit.point;
-
+                if (currentSelectedUnitsGroup == null || currentSelectedUnitsGroup.groupMotors == null) return;
                 foreach (var motor in currentSelectedUnitsGroup.groupMotors)
                 {
                     motor.MoveToTargetPosition(moveToPosition);
