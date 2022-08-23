@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6258096555521151349}
   - component: {fileID: 4651356142673094460}
   m_Layer: 9
-  m_Name: Student
+  m_Name: PE Student
   m_TagString: Student
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165eec083c293744fabe8949132f1ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRange: 10
+  DetectionRange: 5
   AttackRange: 3
   attackTarget: {fileID: 0}
   FindTarget: {fileID: 0}
@@ -171,7 +171,6 @@ MonoBehaviour:
   characterStatusInfo: {fileID: 11400000, guid: c24ba4103fb76432bb1b0f45568634a5,
     type: 2}
   currentHealth: 20
-  Zombie: {fileID: 0}
 --- !u!195 &6258096555521151349
 NavMeshAgent:
   m_ObjectHideFlags: 0

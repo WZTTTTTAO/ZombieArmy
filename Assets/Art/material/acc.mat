@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: conveyor
+  m_Name: acc
   m_Shader: {fileID: 4800000, guid: 837f6aa02eec1de42b4738b884be19f7, type: 3}
   m_ShaderKeywords: WPOS_ON
   m_LightmapFlags: 5
@@ -62,7 +62,7 @@ Material:
     - _TilingY: 0.5
     - _WorldPosition: 0
     m_Colors:
-    - _BaseColor: {r: 0.52290356, g: 0, b: 0.7075472, a: 1}
+    - _BaseColor: {r: 1, g: 0.92332065, b: 0, a: 1}
     - _BasePatternColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _CenterGridColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
     - _CenterLineColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
