@@ -69,20 +69,27 @@ namespace ZombieArmy.Character
         {
             //选择目标敌人
             attackTarget = SelectDetectionTargetEnemy(withinAttackRangeEnemies, enemyCount);
-            nav.destination  = attackTarget.position ;
-            //面向目标敌人
-            //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
-            //目标敌人扣血
-            if (AttackNumber % 3 != 0)
+            if ((attackTarget.position.x - gameObject.transform.position.x) * (attackTarget.position.x - gameObject.transform.position.x) + (attackTarget.position.y - gameObject.transform.position.y) * (attackTarget.position.y - gameObject.transform.position.y) >= AttackRange * AttackRange)
             {
-                attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
-                AttackNumber++;
+                attackTarget = null;
             }
-            else if (AttackNumber%3==0)
+            else
             {
-                attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk*1.5f);
-               // Debug.Log(123456);
-                AttackNumber++;
+                nav.destination = attackTarget.position;
+                //面向目标敌人
+                //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
+                //目标敌人扣血
+                if (AttackNumber % 3 != 0)
+                {
+                    attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk);
+                    AttackNumber++;
+                }
+                else if (AttackNumber % 3 == 0)
+                {
+                    attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfo.Atk * 1.5f);
+                    // Debug.Log(123456);
+                    AttackNumber++;
+                }
             }
         }
 

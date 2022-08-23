@@ -1,24 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZombieArmy.Unit;
+using Random = UnityEngine.Random;
+using UnityEngine.AI;
+
 namespace ZombieArmy.Character
 {
-    public class KillTrap : MonoBehaviour
-    {
-        public float KillTrapDamge;
+
+    public class spine : MonoBehaviour { 
+    public float MarshDamge;
         private TrapManager TrapManager;
-        public KillTrapTrigger killTrapTrigger;
         private void Start()
         {
             TrapManager = FindObjectOfType<TrapManager>();
         }
+
+
         private void OnTriggerStay(Collider other)
         {
-            if (TrapManager.KilltrapType == 1 && killTrapTrigger.isZombieStay == true)
+            if (TrapManager.MarshType == 1)
             {
-                other.GetComponent<CharacterStatus>()?.TakeDamage(KillTrapDamge);
+                other.GetComponent<CharacterStatus>()?.TakeDamage(MarshDamge);
 
             }
         }
+
     }
 }

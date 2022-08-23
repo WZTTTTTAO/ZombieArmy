@@ -785,9 +785,8 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 7747267725845955537, guid: 84a62a777d2474746998d1f4e081b1a8,
     type: 3}
   canvasTrans: {fileID: 615316799}
-  meleeZombiePrefab: {fileID: 4037065689700016714, guid: 0b3bc094e4f17456d819ea8bdf499a52,
-    type: 3}
-  meleeZombieGroupTrans: {fileID: 1815379829}
+  meleeZombiePrefab: {fileID: 0}
+  meleeZombieGroupTrans: {fileID: 0}
 --- !u!1001 &160910338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4958,9 +4957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marshSlowd: 0.2
-  marshFast: 0
-  MarshDamge: 0
-  ABC: 0
 --- !u!1 &957224312
 GameObject:
   m_ObjectHideFlags: 0
@@ -10765,6 +10761,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146079617}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1345202058443938229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1361359915521357652, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_Name
+      value: KillTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.417814
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.8870926
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.752242
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860040705087096005, guid: cb8803621347336478dea9a5db1746fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb8803621347336478dea9a5db1746fd, type: 3}
 --- !u!1001 &4037065690963735600
 PrefabInstance:
   m_ObjectHideFlags: 0
