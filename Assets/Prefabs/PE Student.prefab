@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165eec083c293744fabe8949132f1ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRange: 10
+  DetectionRange: 8
   AttackRange: 2
   attackTarget: {fileID: 0}
   FindTarget: {fileID: 0}
