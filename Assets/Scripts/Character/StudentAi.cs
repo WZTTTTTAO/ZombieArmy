@@ -48,7 +48,7 @@ namespace ZombieArmy.Character
             //先检测侦察范围内是否有敌人，如果有则拉近敌人距离
             //如果攻击范围内有敌人 则攻击敌人
           FindTargetEnemy(withinDetectionRangeEnemies, inDetectionDistanceEnemyCount);
-              if (overlapEnemyCount == 0)
+              if (inDetectionDistanceEnemyCount == 0)
              {
                 nav.destination  = Tran;
             }
