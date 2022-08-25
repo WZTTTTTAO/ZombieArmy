@@ -12,7 +12,9 @@ namespace ZombieArmy.Character
 	{
         private RaycastHit hit;
 
-        [SerializeField] private Transform aimer;
+        private SpriteRenderer aimerSpRenderer;
+        [SerializeField] private Sprite attackAimSP;
+        [SerializeField] private Sprite normalAimSP;
 
         [SerializeField] private RectTransform screenDragArea;
 
@@ -20,14 +22,27 @@ namespace ZombieArmy.Character
 
         private Ray mouseRay;
 
+        //准备A过去
+        private bool readyToA = false;
+
+        private void Start()
+        {
+            aimerSpRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
         private void Update()
         {
-            aimer.gameObject.SetActive(RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition));
+            aimerSpRenderer.gameObject.SetActive(RectTransformUtility.RectangleContainsScreenPoint(screenDragArea, Input.mousePosition));
 
             mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (!Physics.Raycast(mouseRay, out hit)) return;
 
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                readyToA = true;
+            }
+            
             SetAimerPosAndColor(hit.point);
 
             if (Input.GetMouseButtonDown(0))
@@ -35,16 +50,27 @@ namespace ZombieArmy.Character
                 //Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 //if (!Physics.Raycast(mouseRay, out hit)) return;
 
-                //如果左键点击僵尸，则让僵尸进行移动
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
+                if (readyToA)
+                {
+                    if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Zombie"))
+                    {
+                        UnitManager.Instance.CurrentUnitsCanAttack = true;
+                        UnitManager.Instance.MoveCurrentUnitsToMousePosition();
+                        readyToA = false;
+                    }
+                   
+                }
+
+                //如果左键点击僵尸，则选中僵尸
+                if (!readyToA && hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie")) 
                 {
                     UnitManager.Instance.ChangeSelectedUnits(hit.transform.parent);
                 }
                 //如果没有点击到僵尸 则可以进行屏幕拖拽
-                else
-                {
+                //else
+                //{
                     //CameraController.Instance.OnLeftMousePressed();
-                }
+                //}
 
             }
 
@@ -52,6 +78,12 @@ namespace ZombieArmy.Character
             {
                 //Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 //if (!Physics.Raycast(mouseRay, out hit)) return;
+
+                if (readyToA)
+                {
+                    readyToA = false;
+                    return;
+                }
 
                 //如果点击到地面视为移动
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -105,24 +137,34 @@ namespace ZombieArmy.Character
 
         private void SetAimerPosAndColor(Vector3 hitPos)
         {
+            if (readyToA)
+            {
+                aimerSpRenderer.transform.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimerSpRenderer.color = Color.red;
+                aimerSpRenderer.sprite = attackAimSP;
+                aimerSpRenderer.transform.rotation = Quaternion.Euler(90, 0, 0);
+                return;
+            }
+
+            aimerSpRenderer.sprite = normalAimSP;
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
             {
-                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
-                aimer.GetComponent<SpriteRenderer>().color = Color.blue;
-                aimer.rotation = Quaternion.Euler(90, 0, 0);
+                aimerSpRenderer.transform.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimerSpRenderer.color = Color.blue;
+                aimerSpRenderer.transform.rotation = Quaternion.Euler(90, 0, 0);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Student"))
             {
-                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
-                aimer.GetComponent<SpriteRenderer>().color = Color.red;
-                aimer.rotation = Quaternion.Euler(90, 0, 0);
+                aimerSpRenderer.transform.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimerSpRenderer.color = Color.red;
+                aimerSpRenderer.transform.rotation = Quaternion.Euler(90, 0, 0);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                aimer.GetComponent<SpriteRenderer>().color = Color.green;
-                aimer.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
-                aimer.rotation = Quaternion.FromToRotation(transform.forward, hit.normal) * transform.rotation;
+                aimerSpRenderer.color = Color.green;
+                aimerSpRenderer.transform.position = new Vector3(hitPos.x, hitPos.y + 0.1f, hitPos.z);
+                aimerSpRenderer.transform.rotation = Quaternion.FromToRotation(transform.forward, hit.normal) * transform.rotation;
             }
 
 

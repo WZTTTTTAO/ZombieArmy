@@ -63,7 +63,7 @@ namespace ZombieArmy.Character
             //面向目标敌人
             //motor.GraduallyRotateTowardTarget(attackTarget.transform.position);
             //目标敌人扣血
-            attackTarget.GetComponent<CharacterStatus>().TakeDamage(characterStatusInfoInstance.Atk);
+            attackTarget.GetComponent<BaseStatus>().TakeDamage(characterStatusInfoInstance.Atk);
         }
 
         /// <summary>
@@ -76,10 +76,10 @@ namespace ZombieArmy.Character
             //随机一个仇恨值
             float randomHatredValue = Random.Range(0, 1f);
             //计算总仇恨值
-            int hatredCount = 0;
+            float hatredCount = 0;
             for (int i = 0; i < enemyCount; i++)
             {
-                hatredCount += withinAttackRangeEnemies[i].GetComponent<CharacterStatus>().characterStatusInfo.Hatred;
+                hatredCount += withinAttackRangeEnemies[i].GetComponent<BaseStatus>().characterStatusInfo.Hatred;
             }
 
             //计算每一个单位的仇恨值比例 判断随机仇恨值是否在比例区间内
@@ -87,7 +87,7 @@ namespace ZombieArmy.Character
             for (int i = 0; i < enemyCount; i++)
             {
                 //左区间 = 当前仇恨比例， 仇恨比例右区间 = 当前仇恨比例 + 当前敌人仇恨值占比
-                float hatredRatioRightRange = hatredRatio + (float)withinAttackRangeEnemies[i].GetComponent<CharacterStatus>().characterStatusInfo.Hatred / hatredCount;
+                float hatredRatioRightRange = hatredRatio + (float)withinAttackRangeEnemies[i].GetComponent<BaseStatus>().characterStatusInfo.Hatred / hatredCount;
 
                 if (hatredRatio <= randomHatredValue &&
                     randomHatredValue < hatredRatioRightRange)

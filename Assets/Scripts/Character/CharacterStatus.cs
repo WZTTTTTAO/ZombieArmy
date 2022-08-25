@@ -15,8 +15,6 @@ namespace ZombieArmy.Character
         //首击反馈
         private MMF_Player hitFeedbacksPlayer;
 
-        public Action<float> OnDamaged;
-
         protected new void Awake()
         {
             base.Awake();
@@ -28,8 +26,7 @@ namespace ZombieArmy.Character
             base.OnDamage();
             //播放所有受击反馈效果
             hitFeedbacksPlayer?.PlayFeedbacks();
-            //血条UI扣血
-            OnDamaged?.Invoke(currentHealth / characterStatusInfo.MaxHealth);
+            
         }
 
        

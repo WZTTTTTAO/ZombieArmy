@@ -18,7 +18,6 @@ namespace ZombieArmy.Character
         {
             base.OnDeath();
             RemoveSelfFromUnitsGroup();
-            OnDamaged = null;
         }
 
         //在销毁物体前 将自身从当前队伍中移除

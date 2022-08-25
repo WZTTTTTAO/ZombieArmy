@@ -16,4 +16,4 @@ MonoBehaviour:
   maxHealth: 20
   AttackInterval: 1
   attackRange: 1
-  hatred: 3
+  hatred: 0.0001

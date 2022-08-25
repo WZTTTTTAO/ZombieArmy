@@ -39,7 +39,7 @@ namespace ZombieArmy.Character
 		[SerializeField] private float attackRange;
 		public float AttackRange => attackRange;
 		//仇恨值
-		[SerializeField] private int hatred;
-		public int Hatred => hatred;
+		[SerializeField] private float hatred;
+		public float Hatred => hatred;
 	}
 }

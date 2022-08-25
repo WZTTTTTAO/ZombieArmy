@@ -47,18 +47,20 @@ namespace ZombieArmy.Character
             //如果房间触发器被触发则学生才会开始索敌
             //先检测侦察范围内是否有敌人，如果有则拉近敌人距离
             //如果攻击范围内有敌人 则攻击敌人
-          FindTargetEnemy(withinDetectionRangeEnemies, inDetectionDistanceEnemyCount);
               if (inDetectionDistanceEnemyCount == 0)
              {
                 nav.destination  = Tran;
+                return;
             }
+
+            FindTargetEnemy(withinDetectionRangeEnemies, inDetectionDistanceEnemyCount);
 
             //根据攻击时间间隔计算攻击
             if (startAttackTime < Time.time)
-                {
+            {
                     AttackTargetEnemy(withinAttackRangeEnemies, overlapEnemyCount);
                     startAttackTime = Time.time + characterStatusInfo.AttackInterval;            
-           }
+            }
 		}
         private void FindTargetEnemy(Collider[] withinDetectionRangeEnemies, int enemyCount = 0)
         {

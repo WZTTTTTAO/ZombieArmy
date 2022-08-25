@@ -26,7 +26,7 @@ namespace ZombieArmy.Character
         private GameObject selectedIconGO;
 
 
-        private void Start()
+        private void Awake()
         {
 			navMeshAgent = GetComponent<NavMeshAgent>();
             selectedIconGO = transform.Find("Selected").gameObject;

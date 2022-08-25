@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8107150912490547375}
   - component: {fileID: 6461736810648196201}
   - component: {fileID: 725887767737002943}
-  - component: {fileID: 2297495517134180625}
+  - component: {fileID: 8375592046187720242}
   m_Layer: 9
   m_Name: Destructible obstacle
   m_TagString: Untagged
@@ -111,7 +111,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &2297495517134180625
+--- !u!114 &8375592046187720242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 425051522612368261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61869d3f7ab56741bc769591be2a08a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8594a2855de144e82b5846ee912dbd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterStatusInfo: {fileID: 11400000, guid: b3bffa414b2a4074b817c8f65ad55e11,

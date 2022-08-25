@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace ZombieArmy.Character
 		public CharacterStatusInfo characterStatusInfo;
 		//血量
 		[SerializeField] protected float currentHealth;
+        //扣血事件
+        public Action<float> OnDamaged;
 
         protected void Awake()
         {
@@ -35,8 +38,16 @@ namespace ZombieArmy.Character
             }
         }
 
-        protected virtual void OnDeath() { }
-        protected virtual void OnDamage() { }
+        protected virtual void OnDeath()
+        {
+            OnDamaged = null;
+        }
+
+        protected virtual void OnDamage()
+        {
+            //血条UI扣血
+            OnDamaged?.Invoke(currentHealth / characterStatusInfo.MaxHealth);
+        }
 
         private void Death()
         {
