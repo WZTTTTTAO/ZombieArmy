@@ -6,13 +6,12 @@ namespace ZombieArmy.Character
     public class Wall : BaseStatus
     {
         public BaseStatus baseStatus;
-        private float studentHp;
+        public float studentHp=10000;
         [SerializeField] private float nowHp;
         private Animator anim;
 
         private void Start()
         {
-            studentHp = GetComponent<StudentStatus>().characterStatusInfo.MaxHealth;
             anim = GetComponent<Animator>();
         }
         void Update()
@@ -21,6 +20,7 @@ namespace ZombieArmy.Character
             if(studentHp>nowHp)
             {
                 anim.SetBool("Fall", true);
+                Debug.Log(123);
             }
         }
     }
