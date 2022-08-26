@@ -15,5 +15,5 @@ MonoBehaviour:
   Atk: 2
   maxHealth: 20
   AttackInterval: 1
-  attackRange: 1
+  attackRange: 2
   hatred: 2
