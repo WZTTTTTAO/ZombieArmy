@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef392ca5b0f64cedae70bdd06586102, type: 3}
   m_Name: wall
   m_EditorClassIdentifier: 
-  Atk: 1
-  maxHealth: 20
-  AttackInterval: 1
-  attackRange: 1
-  hatred: 0.0001
+  Atk: 0
+  maxHealth: 3
+  AttackInterval: 0
+  attackRange: 0
+  hatred: 0
