@@ -1958,6 +1958,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1730354385}
     m_Modifications:
+    - target: {fileID: 217346030582208605, guid: 0b3bc094e4f17456d819ea8bdf499a52,
+        type: 3}
+      propertyPath: useStaticBillboard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 698547466571421191, guid: 0b3bc094e4f17456d819ea8bdf499a52,
         type: 3}
       propertyPath: characterStatusInfo
@@ -5042,13 +5047,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323000787}
-  m_LocalRotation: {x: 0.51681143, y: -0, z: -0, w: 0.85609937}
-  m_LocalPosition: {x: -7.83, y: 26.4, z: -18.5}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -6.1, y: 19.2, z: -21.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 560885414}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 62.237003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1323000791
 MonoBehaviour:
   m_ObjectHideFlags: 0
